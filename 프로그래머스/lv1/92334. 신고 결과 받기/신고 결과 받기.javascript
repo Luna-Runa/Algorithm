@@ -20,8 +20,9 @@ function solution(id_list, report, k) {
   for (let i = 0; i < report_list.length; i++) {
     if (report_list[i] >= k) {
       temp.forEach((e) => {
+          //id_list에서 e[0](신고자) 를 찾아 인덱스를 반환해주고 그 인덱스에 해당하는 answer를 1 증가
         if (e[1] === id_list[i])
-          answer[id_list.findIndex((id) => id === e[0])] += 1; //id_list에서 e[0](신고자) 를 찾아 인덱스를 반환해주고 그 인덱스에 해당하는 answer를 1 증가
+          answer[id_list.findIndex((id) => id === e[0])] += 1;
       });
     }
   }
