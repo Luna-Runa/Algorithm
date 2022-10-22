@@ -1,32 +1,29 @@
 function solution(n, left, right) {
-    // const arr = new Array(n).fill(0).map(() => new Array(n).fill(0));
-    // // 중첩 루프를 돌면서 i(열 인덱스)가 j(행 인덱스)보다 큰 경우 i + 1, 아닌 경우 j + 1로 채우기
-    // const fillArr = arr.map((row, i) => row.map((col, j) => i > j? i + 1 : j + 1))
-    // return fillArr.flat().slice(left, right + 1)
-    
-    // return new Array(n)
-    //     .fill(new Array(n).fill(0))
-    //     .map((row, i) => row.map((col, j) => i > j? i + 1 : j + 1))
-    //     .flat()
-    //     .slice(left, right + 1)
-    
+    // ---------- Solution 1.
 //     const answer = []
-//     let row = -1
-//     for(let i = 0; i < n * n; i++) {
+    
+//     // left부터 시작해서 right까지 행과 열의 숫자를 계산해 그 부분만 반복해서 값 채우기.
+//     for(let i = left; i < right + 1; i++) {
+//         const row = Math.floor(i / n)
 //         const col = i % n
-//         if(col === 0) row++
 //         answer.push(row > col? row + 1 : col + 1)
 //     }
-    
-//     return answer.slice(left, right + 1)
-    
-    const answer = []
-    
-    for(let i = left; i < right + 1; i++) {
-        const row = Math.floor(i / n)
-        const col = i % n
-        answer.push(row > col? row + 1 : col + 1)
-    }
         
-    return answer
+//     return answer
+    // ---------- 완전히 해결했지만 변수 선언, for문 사용이 마음에 안들어서 리팩토링
+    
+    // ---------- Solution 2-1.
+    //   return new Array(right + 1 - left).fill(0).map((_, answerIndex) => {
+    //     const realIndex = answerIndex + left
+    //     const row = Math.floor(realIndex / n)
+    //     const col = realIndex % n
+    //     return Math.max(row, col) + 1
+    // })
+    // ---------- 가독성 좋은 버전
+        
+    // ---------- Solution 2-2.
+    return new Array(right + 1 - left)
+        .fill(0)
+        .map((_, i) => Math.max(Math.floor((i + left) / n), (i + left) % n) + 1)
+    // ---------- 변수 선언 x 버전
 }
