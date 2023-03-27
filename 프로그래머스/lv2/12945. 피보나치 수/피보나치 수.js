@@ -8,6 +8,5 @@ const solution = (n) => {
         memo.push(current)
     }
 
-    // F(n)을 1234567로 나눈 나머지를 리턴
     return memo[n]
 }
