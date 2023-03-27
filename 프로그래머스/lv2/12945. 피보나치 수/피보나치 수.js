@@ -1,7 +1,13 @@
-function solution(n) {
+const solution = (n) => {
     const memo = [0, 1]
-    
-    for(let i = 2; i <= n; i++) memo[i] = (memo[i-1] + memo[i-2]) % 1234567
-    
-    return memo[n];
+
+    // 반복문을 통해 F(n)까지의 배열을 완성
+    for(let index = 2; memo[n] === undefined; index++) {
+        const current = (memo[index-1] + memo[index-2]) % 1234567
+
+        memo.push(current)
+    }
+
+    // F(n)을 1234567로 나눈 나머지를 리턴
+    return memo[n]
 }
